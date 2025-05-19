@@ -38,8 +38,6 @@ struct ItemView: View {
 struct ContentView: View {
     @State private var expenses = Expenses()
     
-    @State private var showingAddExpense = false
-    
     var personnalExpenses: [ExpenseItem] {
         return expenses.items.filter { $0.type == "Personnal" }
     }
@@ -71,13 +69,11 @@ struct ContentView: View {
             }
             .navigationTitle("iExpense")
             .toolbar {
-                Button("Add new expense", systemImage: "plus") {
-                    showingAddExpense = true
-                }
+                NavigationLink(destination: AddExpenseView(expenses: expenses), label: {
+                    Text("Add new expense")
+                    Image(systemName: "plus")
+                })
             }
-            .sheet(isPresented: $showingAddExpense, content: {
-                AddExpenseView(expenses: expenses)
-            })
         }
     }
     
