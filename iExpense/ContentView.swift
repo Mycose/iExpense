@@ -8,20 +8,24 @@
 import SwiftUI
 
 struct ItemView: View {
-    var item: ExpenseItem
+    @Binding var item: ExpenseItem
     
     var body: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                Text(item.name)
-                    .font(.headline)
-                Text(item.type)
+        NavigationLink {
+            EditExpenseView(expense: $item)
+        } label: {
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(item.name)
+                        .font(.headline)
+                    Text(item.type)
+                }
+                Spacer()
+                
+                Text(item.amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
             }
-            Spacer()
-            
-            Text(item.amount, format: .currency(code: Locale.current.currency?.identifier ?? "USD"))
+            .foregroundStyle(expenseForegroundColor(amount: item.amount))
         }
-        .foregroundStyle(expenseForegroundColor(amount: item.amount))
     }
     
     func expenseForegroundColor(amount: Double) -> Color {
@@ -51,19 +55,19 @@ struct ContentView: View {
             List {
                 if !businessExpenses.isEmpty {
                     Section("Business") {
-                        ForEach(businessExpenses) { item in
-                            ItemView(item: item)
+                        ForEach(expenses.items.indices.filter { expenses.items[$0].type == "Business" }, id: \.self) { index in
+                            ItemView(item: $expenses.items[index])
                         }
-                        .onDelete(perform: removeItems)
+                        .onDelete(perform: removeBusinessItems)
                     }
                 }
                 
                 if !personnalExpenses.isEmpty {
                     Section("Personnal") {
-                        ForEach(personnalExpenses) { item in
-                            ItemView(item: item)
+                        ForEach(expenses.items.indices.filter { expenses.items[$0].type == "Personnal" }, id: \.self) { index in
+                            ItemView(item: $expenses.items[index])
                         }
-                        .onDelete(perform: removeItems)
+                        .onDelete(perform: removePersonalItems)
                     }
                 }
             }
@@ -77,9 +81,21 @@ struct ContentView: View {
         }
     }
     
-    func removeItems(at offset: IndexSet) {
-        expenses.items.remove(atOffsets: offset)
-    }
+    func removeBusinessItems(at offsets: IndexSet) {
+            let businessIndices = expenses.items.indices.filter { expenses.items[$0].type == "Business" }
+            let actualIndices = offsets.map { businessIndices[$0] }
+            for index in actualIndices.sorted(by: >) {
+                expenses.items.remove(at: index)
+            }
+        }
+
+        func removePersonalItems(at offsets: IndexSet) {
+            let personalIndices = expenses.items.indices.filter { expenses.items[$0].type == "Personnal" }
+            let actualIndices = offsets.map { personalIndices[$0] }
+            for index in actualIndices.sorted(by: >) {
+                expenses.items.remove(at: index)
+            }
+        }
 }
 
 #Preview {

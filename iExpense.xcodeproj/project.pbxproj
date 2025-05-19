@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB968F722DDB8A2700775D07 /* EditExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB968F712DDB8A2700775D07 /* EditExpenseView.swift */; };
 		EBE0800A2D7F31CC00C92934 /* iExpenseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE080092D7F31CC00C92934 /* iExpenseApp.swift */; };
 		EBE0800C2D7F31CC00C92934 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE0800B2D7F31CC00C92934 /* ContentView.swift */; };
 		EBE0800E2D7F31CD00C92934 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBE0800D2D7F31CD00C92934 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB968F712DDB8A2700775D07 /* EditExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExpenseView.swift; sourceTree = "<group>"; };
 		EBE080062D7F31CC00C92934 /* iExpense.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iExpense.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBE080092D7F31CC00C92934 /* iExpenseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iExpenseApp.swift; sourceTree = "<group>"; };
 		EBE0800B2D7F31CC00C92934 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 				EBE0801A2DA69AF200C92934 /* AddExpenseView.swift */,
 				EBE0800D2D7F31CD00C92934 /* Assets.xcassets */,
 				EBE0800F2D7F31CD00C92934 /* Preview Content */,
+				EB968F712DDB8A2700775D07 /* EditExpenseView.swift */,
 			);
 			path = iExpense;
 			sourceTree = "<group>";
@@ -152,6 +155,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBE0801B2DA69AF200C92934 /* AddExpenseView.swift in Sources */,
+				EB968F722DDB8A2700775D07 /* EditExpenseView.swift in Sources */,
 				EBE080192D7F31FB00C92934 /* ExpenseItem.swift in Sources */,
 				EBE0800C2D7F31CC00C92934 /* ContentView.swift in Sources */,
 				EBE0800A2D7F31CC00C92934 /* iExpenseApp.swift in Sources */,

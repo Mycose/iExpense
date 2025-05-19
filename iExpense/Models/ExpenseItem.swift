@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ExpenseItem: Identifiable, Codable {
     var id = UUID()
-    let name: String
-    let type: String
-    let amount: Double
+    var name: String
+    var type: String
+    var amount: Double
 }
 
 @Observable
